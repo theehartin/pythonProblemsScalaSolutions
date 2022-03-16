@@ -1,30 +1,9 @@
 import org.scalacheck.Gen.{alphaChar, choose, listOf, posNum}
 import org.scalacheck.Properties
-import org.scalacheck.Prop.{forAll, propBoolean}
+import org.scalacheck.Prop.{AnyOperators, forAll, propBoolean}
 
 
-object PythonChecks extends Properties("PropertyChecks") {
-
-  property("repDigit") = forAll(posNum[Int]) { n =>
-    val truth = (x: Int) => {
-      if ( {
-        x.toString.contains("11") |
-          x.toString.contains("22") |
-          x.toString.contains("33") |
-          x.toString.contains("44") |
-          x.toString.contains("55") |
-          x.toString.contains("66") |
-          x.toString.contains("77") |
-          x.toString.contains("88") |
-          x.toString.contains("99")
-
-      }) true
-      else false
-    }
-    repDigit.repDigit(n) == truth(n)
-  }
-
-
+object MoveToEndCheck extends Properties("PropertyChecks") {
   def rejectListCheck[A](xs: List[A], n: A) = {
     val resultList = MoveToEnd.moveToEnd(xs, n)
     val rejectList = resultList.take(resultList.indexOf(n))
@@ -65,5 +44,4 @@ object PythonChecks extends Properties("PropertyChecks") {
       successListCheck(xs, n)
     }
   }
-
-}//End of object PythonChecks
+}
