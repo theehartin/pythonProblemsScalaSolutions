@@ -10,7 +10,7 @@ object MoveToEndCheck extends Properties("PropertyChecks") {
     !rejectList.contains(n)
   }
 
-  def successListCheck[A](xs: List[A], n: A) = {
+  def selectListCheck[A](xs: List[A], n: A) = {
     val resultList = MoveToEnd.moveToEnd(xs, n)
     val selectList = resultList.drop(resultList.indexOf(n))
 
@@ -35,13 +35,13 @@ object MoveToEndCheck extends Properties("PropertyChecks") {
 
   property("moveToEnd.selectList.num") = forAll { (xs: List[Int], n: Int) =>
     (0 <= n && n <= 9 && xs.contains(n)) ==> {
-      successListCheck(xs, n)
+      selectListCheck(xs, n)
     }
   }
 
   property("moveToEnd.selectList.char") = forAll(listOf(alphaChar), alphaChar) { (xs, n) =>
     (xs.contains(n)) ==> {
-      successListCheck(xs, n)
+      selectListCheck(xs, n)
     }
   }
 }
