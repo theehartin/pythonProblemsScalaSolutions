@@ -1,5 +1,7 @@
 object MultipleChoiceTests extends App{
 
+  //INSTRUCTIONS: https://edabit.com/challenge/Ld4xBpqBXqygwQ5St
+
   case class SchoolTest(subject: String, testAnswers: Map[Int, String], passingGrade: Double)
 
   case class Student(name: String, testMap: Map[String, (Boolean, Double)] = Map()) {
@@ -57,8 +59,7 @@ object MultipleChoiceTests extends App{
 //  println(johnAfterFirstTest.testsTaken)
 //  println(johnAfterSecondTest.testsTaken)
 //  println(susie.testsTaken)
-//  println(johnAfterFirstTest.getClass)
-//  println(john.getClass)
+
 
 
 
