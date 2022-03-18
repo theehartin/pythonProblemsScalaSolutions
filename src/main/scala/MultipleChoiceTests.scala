@@ -2,6 +2,8 @@ object MultipleChoiceTests extends App{
 
   //INSTRUCTIONS: https://edabit.com/challenge/Ld4xBpqBXqygwQ5St
 
+  //NOTE: the takeTest method returns a new student to maintain immutability
+
   case class SchoolTest(subject: String, testAnswers: Map[Int, String], passingGrade: Double)
 
   case class Student(name: String, testMap: Map[String, (Boolean, Double)] = Map()) {
@@ -27,14 +29,10 @@ object MultipleChoiceTests extends App{
       val testscore = (studentCorrectAnswers.size.toDouble / test.testAnswers.size.toDouble) * 100
       val passOrFail = testscore >= test.passingGrade
 
-      updateTestMap(test.subject, passOrFail, testscore)
+      this.copy(this.name, testMap = this.testMap + (test.subject -> (passOrFail, testscore)))
+
     }
 
-
-    def updateTestMap(subject: String, passOrFail: Boolean, score: Double): Student = {
-      val newMap: Map[String, (Boolean, Double)] = this.testMap + (subject -> (passOrFail, score))
-      Student(this.name, newMap)
-    }
 
   }//End of Student Class
 
