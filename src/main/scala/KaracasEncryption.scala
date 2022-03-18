@@ -38,6 +38,14 @@ object KaracasEncryption extends App{
       karacasEncryptionRec(inputToList, List()).mkString("") + "aca"
     }
 
+  def karacasEncryptionHO(input: String): String = {
+    val vowelMap = Map('a' -> '0', 'e' -> '1', 'i' -> '2', 'o' -> '3', 'u' -> '4')
+
+    input.toLowerCase.reverse.map(x => vowelMap.getOrElse(x,x)) + "aca"
+
+
+  }
+
 
 
   println(karacasEncryption("apple"))
