@@ -17,29 +17,28 @@ object KaracasEncryption extends App{
 //
 //  # "1lpp0"
 
-
   def karacasEncryption(input: String) = {
-    val inputToList = input.toLowerCase.split("").toList
+      val inputToList = input.toLowerCase.split("").toList
 
-    val vowelMap = Map("a" -> "0", "e" -> "1", "i" -> "2", "o" -> "3", "u" -> "4")
+      val vowelMap = Map("a" -> "0", "e" -> "1", "i" -> "2", "o" -> "3", "u" -> "4")
 
-    @tailrec
-    def karacasEncryptionRec(inList: List[String], outList: List[String]): List[String] = {
-      if (inList.isEmpty) {
-        outList
-      }
-      else {
-        inList.head match {
-          case "a" | "e" | "i" | "o" | "u" =>
-            karacasEncryptionRec(inList.tail, vowelMap(inList.head) +: outList)
+      @tailrec
+      def karacasEncryptionRec(inList: List[String], outList: List[String]): List[String] = {
+          inList match {
+            case List(x, _*) if x == "a" | x == "e" | x == "i" | x =="o" |x == "u" =>
+              karacasEncryptionRec(inList.tail, vowelMap(inList.head) +: outList)
 
-          case _ => karacasEncryptionRec(inList.tail, inList.head +: outList)
-        }
-      }
-    }//End of karacasEncryptionRec()
+            case List() => outList
 
-    karacasEncryptionRec(inputToList, List()).mkString("") + "aca"
-  }
+            case List(_*) => karacasEncryptionRec(inList.tail, inList.head +: outList)
+          }
+
+      }//End of karacasEncryptionRec()
+
+      karacasEncryptionRec(inputToList, List()).mkString("") + "aca"
+    }
+
+
 
   println(karacasEncryption("apple"))
 
